@@ -1,7 +1,12 @@
 FROM python:3.11 as base
 RUN pip install poetry
-COPY pyproject.toml poetry.lock .
 
+RUN mkdir /app
+WORKDIR /app
+
+COPY pyproject.toml poetry.lock .
 RUN poetry install
 
-CMD ["python", "manage.py", "runserver"]
+COPY . .
+
+CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]

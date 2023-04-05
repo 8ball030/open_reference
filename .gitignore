@@ -1,3 +1,4 @@
+**/node_modules
 **/**.swp
 **/db.sqlite3
 **/__pycache__

@@ -1,5 +1,8 @@
 # Open Source Reference
 
+## ALICE - Autonomous Learning and Improvement Codebase Enhancer
+
+
 The purpose of this repository is provide a collection of reference materials in relation to open-source distributed multi agent systems development. 
 
 The overarching goal of the repository is to eventually create an agent service capable of maintaining and improving itself.
@@ -22,10 +25,16 @@ A live dashboard is provided at;
 
 This displays the current status of all of the applications and all current deployments.
 
-- Repo Backend
-- Repo Frontend
-- Dashboard
-- Status & Monitoring
+Custom Components:
+- Alice: Implemented in Python using the Valory Stack.
+    - manages the lifecycle of the repositories.
+- Repo Backend: Implemented in Django Rest Framework
+  - provides a structured rest api for the frontend.
+- Repo Frontend: Implemented in React
+
+Open Source Components:
+- Dashboard: Opensource Dashy.io
+- Status & Monitoring: Gatus.io
 
 ## Deployment
 

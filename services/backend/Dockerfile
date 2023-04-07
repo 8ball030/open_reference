@@ -4,7 +4,8 @@ RUN pip install poetry
 RUN mkdir /app
 WORKDIR /app
 
-COPY pyproject.toml poetry.lock .
+# so we speed up local dev.
+COPY pyproject.toml poetry.lock ./
 RUN poetry install
 
 COPY . .

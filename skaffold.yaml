@@ -1,0 +1,11 @@
+apiVersion: skaffold/v2beta29	# 	version of the configuration.
+kind: Config
+metadata:
+  name: alice
+build:
+  artifacts:
+  - image: django_backend
+    context: services/backend
+    docker:
+      dockerfile: Dockerfile
+deploy: {}

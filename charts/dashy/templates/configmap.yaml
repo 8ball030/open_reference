@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dashy-config
+  labels:
+    {{- include "dashy.labels" . | nindent 4 }}
+data:
+  # property-like keys; each key maps to a simple value
+  conf.yml: |
+    {{toString .Values.dashyConfig.data | nindent 8}}

@@ -16,7 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from repos.views import (
+    home,
+    repos,
+    tools,
+    roles,
+)
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin", admin.site.urls),
+    path("", home, name="repos"),
+    path("repos", repos, name="repos"),
+    path("tools", tools, name="tools"),
+    path("roles", roles, name="roles"),
 ]

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Roles{% endblock %}
+
+{% block content %}
+<h1>Roles</h1>
+<p>Experience from the following roles.</p>
+
+{% if roles %}
+{% for role in roles %}
+    <h3>{{ role.name }}</h3>
+    <p>{{ role.description }}</p>
+{% endfor %}
+{% endif %}
+{% endblock %}

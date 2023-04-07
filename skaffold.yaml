@@ -4,8 +4,24 @@ metadata:
   name: alice
 build:
   artifacts:
-  - image: django_backend
+  - image: eightballer/django_backend
     context: services/backend
     docker:
       dockerfile: Dockerfile
-deploy: {}
+deploy:
+  helm:
+    releases:
+      - name: dashy
+        namespace: dashy
+        createNamespace: true
+        chartPath: charts/dashy
+        valuesFiles:
+          - configs/local/values/dashy.yaml
+
+
+
+portForward:
+  - resourceType: service
+    resourceName: dashy
+    port: 80
+    localPort: 8080

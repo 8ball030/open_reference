@@ -1,3 +1,8 @@
+infra/kindcluster-config
+**/.terraform**
+**/terraform*state
+# caches etc
 **/**.swp
 **/db.sqlite3
 **/__pycache__
+*.idea

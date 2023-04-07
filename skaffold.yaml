@@ -17,11 +17,24 @@ deploy:
         chartPath: charts/dashy
         valuesFiles:
           - configs/local/values/dashy.yaml
-
+      # webapp deployment
+      - name: webapp
+        namespace: webapp
+        createNamespace: true
+        chartPath: charts/webapp
+        valuesFiles:
+        - configs/local/values/webapp.yaml
 
 
 portForward:
   - resourceType: service
     resourceName: dashy
+    namespace: dashy
     port: 80
     localPort: 8080
+
+  - resourceType: service
+    resourceName: webapp
+    namespace: webapp
+    port: 80
+    localPort: 8085

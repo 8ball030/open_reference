@@ -50,7 +50,7 @@ dashyConfig:
           collapsed: false
         items:
           - title: Webapp Public
-            url: https://localhost:8000
+            url: http://localhost:8085
             icon: fas fa-server
             description: Backend service
       - name: Agents

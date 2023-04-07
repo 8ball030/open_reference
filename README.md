@@ -60,3 +60,19 @@ Running bare-metal can be accomplished using kubeadm, however such a low level o
 ### Docker-Compose
 
 Docker-compose is initially used to orchestrate local containers.
+
+# Development
+
+## Local Development
+To run the application locally, you will need to install the following;
+- Docker
+- Docker Compose
+- Make
+- Python 3.8
+- Pipenv
+
+To run the application locally, you will need to run the following commands;
+
+```bash
+make provision-local deploy
+```

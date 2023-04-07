@@ -1,0 +1,55 @@
+dashyConfig:
+  data: |
+    appConfig:
+      theme: matrix
+      customCss: >-
+        @media (min-width: 1780px) { .home
+        .item-group-container:not(.item-size-large) { grid-template-columns:
+        repeat(3, 1fr); } } .home .item-group-container.item-size-large
+        .item-group-grid, .home .item-group-container.orientation-vertical
+        .item-group-grid { display: flex !important; }
+      auth:
+        enableGuestAccess: true
+      webSearch:
+        searchEngine: duckduckgo
+        openingMethod: modal
+      enableErrorReporting: true
+      allowConfigEdit: false
+      hideComponents:
+          hideSettings: true
+      enableServiceWorker: true
+      enableFontAwesome: true
+      fontAwesomeKey: 2e949c5bf4
+      faviconApi: allesedv
+      statusCheck: true
+      statusCheckInterval: 0
+      workspaceLandingUrl: https://dashy.to
+      enableMultiTasking: false
+      layout: auto
+      itemSize: large
+      language: en
+      startingView: minimal
+      logo: https://i.postimg.cc/hPXcm1RX/robot-logo.png
+    pageInfo:
+      title: Alice
+      description: Autonomous Learning and Improvement Codebase Enhancer
+      icon: https://i.postimg.cc/hPXcm1RX/robot-logo.png
+    sections:
+      - name: Getting Started
+        icon: fas fa-rocket
+        displayData:
+          collapsed: false
+        items:
+          - title: Alice Github
+            url: https://github.com/8ball030/open_reference
+            icon: fab fa-github
+            description: Alice's Github
+      - name: Services
+        icon: fas fa-server
+        displayData:
+          collapsed: false
+        items:
+          - title: Backend
+            url: https://localhost:8000
+            icon: fas fa-server
+            description: Backend service

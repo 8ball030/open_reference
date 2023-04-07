@@ -49,7 +49,29 @@ dashyConfig:
         displayData:
           collapsed: false
         items:
-          - title: Backend
-            url: https://localhost:8000
+          - title: Webapp Public
+            url: http://localhost:8085
             icon: fas fa-server
             description: Backend service
+      - name: Agents
+        icon: fas fa-robot
+        displayData:
+          collapsed: false
+        items:
+          - title: Jim
+            url: https://localhost:8001
+            icon: fas fa-robot
+            description: Autonomous Agent
+          - title: Bob
+            url: https://localhost:8001
+            icon: fas fa-robot
+            description: Autonomous Agent
+          - title: Jane
+            url: https://localhost:8001
+            icon: fas fa-robot
+            description: Autonomous Agent
+          - title: Lucy
+            url: https://localhost:8001
+            icon: fas fa-robot
+            description: Autonomous Agent
+    

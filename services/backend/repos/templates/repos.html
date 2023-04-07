@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Repositories{% endblock %}
+
+{% block content %}
+<h1>Repositories</h1>
+<p>Alice has access to the following repositories.</p>
+
+{% if repos %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">URL</th>
+            <th scope="col">Last Modified</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Author</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for repo in repos %}
+        <tr>
+            <td>{{ repo.name }}</td>
+            <td>{{ repo.url }}</td>
+            <td>{{ repo.last_modified }}</td>
+            <td>{{ repo.owner.handle}}</td>
+            <td>{{ repo.author.handle}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}
+

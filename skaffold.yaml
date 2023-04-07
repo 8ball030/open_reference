@@ -24,7 +24,10 @@ deploy:
         chartPath: charts/webapp
         valuesFiles:
         - configs/local/values/webapp.yaml
-
+        artifactOverrides:
+          image: eightballer/django_backend
+        imageStrategy:
+          helm: {}
 
 portForward:
   - resourceType: service

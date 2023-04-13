@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "open-reference"
+version = "0.1.0"
+description = ""
+authors = ["8baller <tomrae030@hotmail.com>"]
+readme = "README.md"
+packages = [{include = "open_reference"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

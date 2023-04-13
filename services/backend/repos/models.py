@@ -23,7 +23,7 @@ class Repository(models.Model):
 
 class Commit(models.Model):
     repository = models.ForeignKey(Repository, on_delete=models.CASCADE)
-    hash = models.CharField(max_length=100)
+    sha = models.CharField(max_length=100)
     message = models.TextField()
     date = models.DateTimeField(default=datetime.now)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
@@ -51,5 +51,14 @@ class Tool(models.Model):
 class Role(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    start_date = models.DateTimeField(default=None, null=True)
+    end_date = models.DateTimeField(default=None, null=True)
+
+
+class Organisation(models.Model):
+    """Represents an Organisation tht author and role can be associated with."""
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    url = models.URLField(null=False, blank=False)
     start_date = models.DateTimeField(default=None, null=True)
     end_date = models.DateTimeField(default=None, null=True)

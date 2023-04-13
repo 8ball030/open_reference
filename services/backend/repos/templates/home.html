@@ -3,13 +3,63 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <h1>Welcome to Alice</h1>
-    <ul>
-        <li>Autonomous</li>
-        <li>Learning</li>
-        <li>Improvement</li>
-        <li>Codebase</li>
-        <li>Enhancer</li>
-    </ul>
-    <p>ALICE is a codebase enhancer that helps developers improve their codebases by providing them with actionable recommendations.</p>
+    <h1>Tom Rae</h1>
+    <p>Software Engineer</p>
+    <p>
+        <a href="
+        https://www.linkedin.com/in/tom-r-89723755/">LinkedIn</a>
+    </p>
+    <p>
+        <a href="https://github.com/8ball030">GitHub:</a> 3,941 contributions in the last year.
+    </p>
+    <p>
+        <a href="https://twitter.com/8baller11">Twitter:</a> 482 Followers
+    </p>
+    <p>
+        <a href="https://skyline.github.com/8ball030/2023">Github Skyline</a>
+    </p>
+<br>
+
+    <h2>Experience</h2>
+    <p>Experience from the following roles.</p>
+
+    {% if roles %}
+        {% for role in roles %}
+            <h4>{{ role.name }}</h4>
+            <p>{{ role.description }}</p>
+        {% endfor %}
+    {% endif %}
+    <br>
+
+    <h2>Organisations</h2>
+    <p>Experience from the following Organizations.</p>
+
+    {% if organisations %}
+        {% for organisation in organisations %}
+            <h4>{{ organisation.name }}</h4>
+            <p>{{ organisation.description }}</p>
+        {% endfor %}
+    {% endif %}
+    <br>
+
+    <h2>Repos</h2>
+    <p>Experience from the following 31 Open Source Repositories.</p>
+
+    {% if repos%}
+        {% for repo in repos %}
+            <a href="{{ repo.url }}">{{ repo.name }}</a>
+        {% endfor %}
+
+    {% endif %}
+
+    <br>
+    <h2>Tools</h2>
+    <p>Experience with the following tools.</p>
+    {% if tools %}
+        {% for tool in tools %}
+            <a href="{{ tool.url }}">{{ tool.name }}</a>
+        {% endfor %}
+    {% endif %}
+
+
 {% endblock %}

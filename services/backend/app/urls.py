@@ -21,6 +21,7 @@ from repos.views import (
     repos,
     tools,
     roles,
+    organisations,
 )
 
 
@@ -30,4 +31,5 @@ urlpatterns = [
     path("repos", repos, name="repos"),
     path("tools", tools, name="tools"),
     path("roles", roles, name="roles"),
+    path("organisations", organisations, name="organisations"),
 ]

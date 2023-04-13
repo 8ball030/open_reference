@@ -6,3 +6,8 @@ provision-local:
 
 deploy:
 	skaffold run
+
+
+export-models:
+	sqlacodegen --outfile src/models.py sqlite:///services/backend/db.sqlite3
+

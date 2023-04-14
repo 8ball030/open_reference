@@ -62,3 +62,30 @@ class Organisation(models.Model):
     url = models.URLField(null=False, blank=False)
     start_date = models.DateTimeField(default=None, null=True)
     end_date = models.DateTimeField(default=None, null=True)
+
+
+class Honor(models.Model):
+    """This is a data model to represent an honor."""
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    issuer = models.CharField(max_length=100)
+    date = models.DateTimeField(default=None, null=True)
+
+
+class Institution(models.Model):
+    """Represents an educational institution."""
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    url = models.URLField(null=False, blank=False)
+    start_date = models.DateTimeField(default=None, null=True)
+    end_date = models.DateTimeField(default=None, null=True)
+
+
+class Education(models.Model):
+    """Represents an educational entry."""
+    start_date = models.DateTimeField(default=None, null=True)
+    end_date = models.DateTimeField(default=None, null=True)
+    grade = models.CharField(max_length=100)
+    degree = models.CharField(max_length=100, null=True, blank=True)
+    description = models.TextField()
+    institution = models.ForeignKey(Institution, on_delete=models.CASCADE)

@@ -92,13 +92,13 @@ def create_tool(apps, schema_editor):
 #     )
 
 
-def create_role(apps, schema_editor):
-    Role = apps.get_model("repos", "role")
-    if not Role.objects.filter(name=DEFAULT_ROLE).exists():
-        Role.objects.create(
-            name=DEFAULT_ROLE,
-            description=DEFAULT_ROLE_DESCRIPTION,
-        )
+# def create_role(apps, schema_editor):
+#     Role = apps.get_model("repos", "role")
+#     if not Role.objects.filter(name=DEFAULT_ROLE).exists():
+#         Role.objects.create(
+#             name=DEFAULT_ROLE,
+#             description=DEFAULT_ROLE_DESCRIPTION,
+#         )
 
 
 def create_organization(apps, schema_editor):
@@ -131,5 +131,5 @@ class Migration(migrations.Migration):
         # migrations.RunPython(create_repos),
         migrations.RunPython(create_tool),
         # migrations.RunPython(create_language),
-        migrations.RunPython(create_role),
+        # migrations.RunPython(create_role),
     ]

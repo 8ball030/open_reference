@@ -66,6 +66,27 @@ class ReposAuthor(Base):
     handle = Column(String(100), nullable=False)
 
 
+class ReposHonor(Base):
+    __tablename__ = 'repos_honor'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100), nullable=False)
+    description = Column(Text, nullable=False)
+    issuer = Column(String(100), nullable=False)
+    date = Column(DateTime)
+
+
+class ReposInstitution(Base):
+    __tablename__ = 'repos_institution'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100), nullable=False)
+    description = Column(Text, nullable=False)
+    url = Column(String(200), nullable=False)
+    start_date = Column(DateTime)
+    end_date = Column(DateTime)
+
+
 class ReposLanguage(Base):
     __tablename__ = 'repos_language'
 
@@ -73,6 +94,17 @@ class ReposLanguage(Base):
     name = Column(String(100), nullable=False)
     description = Column(Text, nullable=False)
     url = Column(String(200), nullable=False)
+
+
+class ReposOrganisation(Base):
+    __tablename__ = 'repos_organisation'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100), nullable=False)
+    description = Column(Text, nullable=False)
+    url = Column(String(200), nullable=False)
+    start_date = Column(DateTime)
+    end_date = Column(DateTime)
 
 
 class ReposOwner(Base):
@@ -153,6 +185,20 @@ class DjangoAdminLog(Base):
 
     content_type = relationship('DjangoContentType')
     user = relationship('AuthUser')
+
+
+class ReposEducation(Base):
+    __tablename__ = 'repos_education'
+
+    id = Column(Integer, primary_key=True)
+    start_date = Column(DateTime)
+    end_date = Column(DateTime)
+    grade = Column(String(100), nullable=False)
+    description = Column(Text, nullable=False)
+    institution_id = Column(ForeignKey('repos_institution.id'), nullable=False, index=True)
+    degree = Column(String(100))
+
+    institution = relationship('ReposInstitution')
 
 
 class ReposRepository(Base):

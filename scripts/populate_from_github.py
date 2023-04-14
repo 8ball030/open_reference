@@ -76,76 +76,76 @@ def analyse():
 
     repositories = get_repositories(author_name)
     # Get the repositories for the GitHub user.
-    for repository in tqdm(repositories):
-        # we get the name of the repository
-        # we get the owner of the repository
-        owner = add_if_not_found(session, Owner, handle=repository["owner"]["login"])
-        author = add_if_not_found(session, Author, handle=author_name)
-        last_commit = repository["updated_at"]
-        last_modified = repository["pushed_at"]
-        last_modified = datetime.strptime(last_modified, '%Y-%m-%dT%H:%M:%SZ')
-        last_checked = datetime.now()
-        name = repository["name"]
-        url = repository["html_url"]
-        if not (repo := session.query(Repository).filter_by(name=name).first()):
-            new_repository = Repository(
-                name=name,
-                url=url,
-                last_modified=last_modified,
-                last_checked=last_checked,
-                author=author,
-                owner=owner
-            )
-            session.add(new_repository)
-            click.echo("Added repository {} to the database".format(name))
-        else:
-            repo.last_modified = last_modified
-            repo.last_checked = last_checked
-            repo.author = author
-            repo.owner = owner
-            click.echo("Updated repository {} in the database".format(name))
-        sleep(1)
-    session.commit()
-    # now we have our repositories
-    # we need to get the commits for each repository
-    # we need to get the programming languages for each repository
-    # we need to get the tools for each repository
-    # we need to get the roles for each repository
-    repos = session.query(Repository).all()
-    for repo in tqdm(repos):
-        commits = requests.get("https://api.github.com/repos/{}/{}/commits".format(repo.owner.handle, repo.name))
-        if commits.status_code != 200:
-            click.echo("Could not get commits for repository {}".format(repo.name))
-            continue
-        commits = commits.json()
-        for commit in commits:
-            sha = commit["sha"]
-            if not (commit_model := session.query(Commit).filter_by(sha=sha).first()):
-                if commit["author"] is None or commit["author"]["login"] is None:
-                    author = add_if_not_found(session, Author, handle="Unknown")
-                else:
-                    author = add_if_not_found(session, Author, handle=commit["author"]["login"])
+    # for repository in tqdm(repositories):
+    #     # we get the name of the repository
+    #     # we get the owner of the repository
+    #     owner = add_if_not_found(session, Owner, handle=repository["owner"]["login"])
+    #     author = add_if_not_found(session, Author, handle=author_name)
+    #     last_commit = repository["updated_at"]
+    #     last_modified = repository["pushed_at"]
+    #     last_modified = datetime.strptime(last_modified, '%Y-%m-%dT%H:%M:%SZ')
+    #     last_checked = datetime.now()
+    #     name = repository["name"]
+    #     url = repository["html_url"]
+    #     if not (repo := session.query(Repository).filter_by(name=name).first()):
+    #         new_repository = Repository(
+    #             name=name,
+    #             url=url,
+    #             last_modified=last_modified,
+    #             last_checked=last_checked,
+    #             author=author,
+    #             owner=owner
+    #         )
+    #         session.add(new_repository)
+    #         click.echo("Added repository {} to the database".format(name))
+    #     else:
+    #         repo.last_modified = last_modified
+    #         repo.last_checked = last_checked
+    #         repo.author = author
+    #         repo.owner = owner
+    #         click.echo("Updated repository {} in the database".format(name))
+    #     sleep(1)
+    # session.commit()
+    # # now we have our repositories
+    # # we need to get the commits for each repository
+    # # we need to get the programming languages for each repository
+    # # we need to get the tools for each repository
+    # # we need to get the roles for each repository
+    # repos = session.query(Repository).all()
+    # for repo in tqdm(repos):
+    #     commits = requests.get("https://api.github.com/repos/{}/{}/commits".format(repo.owner.handle, repo.name))
+    #     if commits.status_code != 200:
+    #         click.echo("Could not get commits for repository {}".format(repo.name))
+    #         continue
+    #     commits = commits.json()
+    #     for commit in commits:
+    #         sha = commit["sha"]
+    #         if not (commit_model := session.query(Commit).filter_by(sha=sha).first()):
+    #             if commit["author"] is None or commit["author"]["login"] is None:
+    #                 author = add_if_not_found(session, Author, handle="Unknown")
+    #             else:
+    #                 author = add_if_not_found(session, Author, handle=commit["author"]["login"])
 
-                new_commit = Commit(
-                    sha=sha,
-                    repository=repo,
-                    message=commit["commit"]["message"],
-                    date=datetime.strptime(commit["commit"]["author"]["date"], '%Y-%m-%dT%H:%M:%SZ'),
-                    author=author
-                )
-                session.add(new_commit)
-                click.echo("Added commit {} to the database".format(sha))
-            else:
-                commit_model.repository = repo
-                click.echo("Updated commit {} in the database".format(sha))
-            sleep(1)
-    session.commit()
+    #             new_commit = Commit(
+    #                 sha=sha,
+    #                 repository=repo,
+    #                 message=commit["commit"]["message"],
+    #                 date=datetime.strptime(commit["commit"]["author"]["date"], '%Y-%m-%dT%H:%M:%SZ'),
+    #                 author=author
+    #             )
+    #             session.add(new_commit)
+    #             click.echo("Added commit {} to the database".format(sha))
+    #         else:
+    #             commit_model.repository = repo
+    #             click.echo("Updated commit {} in the database".format(sha))
+    #         sleep(1)
+    # session.commit()
 
 
-    # now we have our commits
-    # we need to get the programming languages for each repository
-    # we need to get the tools for each repository
-    # we need to get the roles for each repository
+    # # now we have our commits
+    # # we need to get the programming languages for each repository
+    # # we need to get the tools for each repository
+    # # we need to get the roles for each repository
 
     repos = session.query(Repository).all()
     for repo in tqdm(repos):

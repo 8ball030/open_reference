@@ -3,7 +3,7 @@ Simple views for the repos.
 """
 from django.shortcuts import render
 
-from .models import Repository, Tool, Language, Role, Organisation
+from .models import Repository, Tool, Language, Role, Organisation, Honor, Education
 
 
 
@@ -39,12 +39,19 @@ def home(request):
     tools = Tool.objects.all()
     languages = Language.objects.all()
     repos = Repository.objects.all().order_by("last_modified")
+    honors = reversed(Honor.objects.all().order_by("date"))
+    educations = reversed(Education.objects.all().order_by("start_date"))
+    # for honor in honors:
+    #     honor.date = honor.date.strftime("%B %Y")
+
     context = {
         "repos": reversed(repos),
         "tools": tools,
         "languages": languages,
-        "roles": roles,
+        "roles": sorted(roles, key=lambda x: x.start_date, reverse=True),
         "organisations": organisations,
+        "honors": honors,
+        "educations": educations,
     }
 
     return render(request, "home.html", context)

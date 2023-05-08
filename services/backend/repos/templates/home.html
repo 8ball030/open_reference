@@ -20,29 +20,45 @@
     </p>
 <br>
 
-    <h2>Experience</h2>
-    <p>Experience from the following roles.</p>
+    <h1>Education</h1>
+    {% if educations %}
+        {% for qualification in educations %}
+            <h3>{{qualification.institution.name}}</h3>
+            <h4>{{ qualification.degree }} - Start: {{ qualification.start_date |date:'Y-m'}} End: {{ qualification.end_date |date:'Y-m'}} </h4>
+            <h5>Grade: {{ qualification.grade }}</h5>
+            <p>{{ qualification.description }}</p>
+        {% endfor %}
+    {% endif %}
 
+
+
+    <h1>Experience</h1>
+    <p>Experience from the following roles.</p>
     {% if roles %}
         {% for role in roles %}
-            <h4>{{ role.name }}</h4>
+            {% if role.end_date == None %}
+                <h4>{{ role.name }}</h4> Start: {{ role.start_date |date:'Y-m'}} End: Present
+            {% else %}
+                <h4>{{ role.name }}</h4> Start: {{ role.start_date|date:'Y-m'}} End: {{ role.end_date|date:'Y-m' }}
+            {% endif %}
             <p>{{ role.description }}</p>
+
         {% endfor %}
     {% endif %}
     <br>
 
-    <h2>Organisations</h2>
+    <h1>Organisations</h1>
     <p>Experience from the following Organizations.</p>
 
     {% if organisations %}
         {% for organisation in organisations %}
-            <h4>{{ organisation.name }}</h4>
+            <h5>{{ organisation.name }}</h5>
             <p>{{ organisation.description }}</p>
         {% endfor %}
     {% endif %}
     <br>
 
-    <h2>Repos</h2>
+    <h1>Repos</h1>
     <p>Experience from the following 31 Open Source Repositories.</p>
 
     {% if repos%}
@@ -53,13 +69,37 @@
     {% endif %}
 
     <br>
-    <h2>Tools</h2>
+    <br>
+    <h1>Tools & Languages</h1>
     <p>Experience with the following tools.</p>
     {% if tools %}
         {% for tool in tools %}
-            <a href="{{ tool.url }}">{{ tool.name }}</a>
+            {% if not forloop.last %}
+                <a href="{{ tool.url }}">{{ tool.name }}</a>,
+            {% else %}
+                <a href="{{ tool.url }}">{{ tool.name }}</a>
+            {% endif %}
         {% endfor %}
     {% endif %}
+    <br>
+    <br>
+    <p>Experience with the following languages.</p>
+    {% for language in languages %}
+        {% if not forloop.last %}
+            <a href="{{ language.url }}">{{ language.name }}</a>,
+        {% else %}
+            <a href="{{ language.url }}">{{ language.name }}</a>
+        {% endif %}
+    {% endfor %}
 
-
+    <br>
+    <br>
+    <h1>Hackathons & Honors</h1>
+    <p>Experience from the following Hackathons.</p>
+    {% if honors %}
+        {% for honor in honors %}
+            <h4>{{ honor.name }}</h4> {{honor.date|date:'Y-m'}}
+            <p>{{ honor.description }}</p>
+        {% endfor %}
+    {% endif %}
 {% endblock %}

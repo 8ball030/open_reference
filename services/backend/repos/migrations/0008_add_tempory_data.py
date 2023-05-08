@@ -57,16 +57,16 @@ def create_organization(apps, schema_editor):
 
 def create_roles(apps, schema_editor):
     organisation_roles = [
-        ("Valory.xyz", "Devops/Infrastructure", "Devops/Infrastructure"),
-        ("Valory.xyz", "Eco System Manager", "Eco System Manager"),
-        ("Mobix", "Devops/Infrastructure", "Devops/Infrastructure"),
-        ("Mobix", "Full Stack Developer", "Full Stack Developer"),
-        ("Datarella", "Full Stack Developer", "Full Stack Developer"),
-        ("Agent3", "Data Scientist", "Data Scientist"),
-        ("Enable", "Help Desk", "Help Desk"),
-        ("Santander", "Personal Banker", "Personal Banker"),
-        ("Barclays", "Cashier", "Cashier")
-
+        # ("Valory.xyz", "Devops/Infrastructure", "Devops/Infrastructure"),
+        # ("Valory.xyz", "Eco System Manager", "Eco System Manager"),
+        # ("Mobix", "Devops/Infrastructure", "Devops/Infrastructure"),
+        # ("Mobix", "Full Stack Developer", "Full Stack Developer"),
+        # ("Datarella", "Full Stack Developer", "Full Stack Developer"),
+        # ("Agent3", "Data Scientist", "Data Scientist"),
+        # ("Enable", "Help Desk", "Help Desk"),
+        # ("Santander", "Personal Banker", "Personal Banker"),
+        # ("Barclays", "Cashier", "Cashier")
+        #
     ]
     Role = apps.get_model("repos", "role")
     for organisation_role in organisation_roles:
@@ -81,9 +81,6 @@ def create_roles(apps, schema_editor):
             role_obj = Role.objects.get(name=organisation_role[1])
             role_obj.description = organisation_role[2]
             role_obj.save()
-
-
-
 
 
 class Migration(migrations.Migration):

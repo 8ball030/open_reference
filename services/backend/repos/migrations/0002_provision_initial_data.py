@@ -90,5 +90,5 @@ class Migration(migrations.Migration):
         migrations.RunPython(create_repos),
         migrations.RunPython(create_tool),
         migrations.RunPython(create_language),
-        migrations.RunPython(create_role),
+        # migrations.RunPython(create_role),
     ]
